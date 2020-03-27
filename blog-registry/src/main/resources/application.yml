@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: registry
+  security:
+    user:
+      name: bobo
+      password: 123456
+  profiles:
+    active: replica1
+---
+spring:
+  profiles: replica1
+server:
+  port: 7001
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://bobo:123456@localhost:7001/eureka/,http://bobo:123456@localhost:7002/eureka/
+  instance:
+    prefer-ip-address: true
+---
+spring:
+  profiles: replica2
+server:
+  port: 7002
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://bobo:123456@localhost:7001/eureka/,http://bobo:123456@localhost:7002/eureka/
+  instance:
+    prefer-ip-address: true
