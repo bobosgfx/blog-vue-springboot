@@ -9,5 +9,13 @@ spring:
     admin:
       discovery:
         ignored-services: ${spring.application.name}
+      notify:
+        mail:
+          to: 473420490@qq.com
+          from: 473420490@qq.com
+  mail:
+    password: mjxgxwxmbbexbifa
+    host: smtp.qq.com
+    username: 473420490@qq.com  
 server:
   port: 7000
