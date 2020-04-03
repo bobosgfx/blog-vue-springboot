@@ -61,5 +61,4 @@ public class OAuthRealm extends AuthorizingRealm {
         );
         return authenticationInfo;
     }
-
 }

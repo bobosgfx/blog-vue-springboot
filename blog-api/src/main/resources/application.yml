@@ -4,7 +4,6 @@ server:
 me:
   upload:
     path: D:/blogFile/
-
 spring:
   application:
     name: blog-api
@@ -24,7 +23,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   redis:
     database: 0
-    host: 192.168.163.142
+    host: 192.168.163.148
     port: 6379
     password: 123456
     timeout: 5000
@@ -34,3 +33,22 @@ spring:
         min-idle: 0
         max-active: 8
         max-wait: -1
+  boot:
+    admin:
+      client:
+        url: http://localhost:7000
+        username: bobo
+        password: 123456
+        instance:
+          name: blog-api
+          service-base-url: http://localhost:8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+logging:
+  file: admin-client.log #添加开启admin的日志监控

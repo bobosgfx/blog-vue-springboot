@@ -50,7 +50,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public void deleteCategoryById(Integer id) {
-        categoryRepository.delete(id);
+        categoryRepository.deleteById(id);
     }
 
     @Override

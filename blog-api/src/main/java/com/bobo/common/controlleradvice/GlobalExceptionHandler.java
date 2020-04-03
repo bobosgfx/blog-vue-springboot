@@ -20,13 +20,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-/**
- * 全局异常处理器
- *
- * @author shimh
- * <p>
- * 2018年1月23日
- */
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

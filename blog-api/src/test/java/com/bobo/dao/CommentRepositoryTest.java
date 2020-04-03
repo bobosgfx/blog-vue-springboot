@@ -15,7 +15,7 @@ public class CommentRepositoryTest extends BlogApiApplicationTests {
     @Test
     public void add() {
 
-        Comment parent = commentRepository.findOne(1);
+        Comment parent = commentRepository.getOne(1);
 
         Comment sub1 = new Comment();
         sub1.setContent("sub1");
@@ -34,7 +34,7 @@ public class CommentRepositoryTest extends BlogApiApplicationTests {
     @Transactional
     public void get() {
 
-        Comment parent = commentRepository.findOne(1);
+        Comment parent = commentRepository.getOne(1);
 
         System.out.println(parent.getChildrens().size());
 
