@@ -9,7 +9,14 @@
 import GoTop from '@/components/gotop/GoTop'
 export default {
   name: 'App',
-  components: { GoTop }
+  components: { GoTop },
+  watch: {
+      '$route' () {
+          let locationHash = window.location.hash;
+          sessionStorage.setItem("hashLocation",locationHash);//把路由存在缓存中，此处你可以console.log看出路由变化
+
+      }
+  },
 }
 </script>
 

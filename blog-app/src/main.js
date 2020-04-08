@@ -1,5 +1,6 @@
 
 import Vue from 'vue'
+import VueMatomo from 'vue-matomo'
 import App from './App'
 
 import router from './router'
@@ -35,3 +36,21 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+Vue.use(VueMatomo, {
+  host: 'http://192.168.163.148/', // 这里配置你自己的piwik服务器地址和网站ID
+  siteId: 1,//siteId值
+  // 根据router自动注册
+  router: router,
+  // // 是否需要在发送追踪信息之前请求许可
+  // // 默认false
+  requireConsent: false,
+  enableLinkTracking: true,
+  // // 是否追踪初始页面
+  // // 默认true
+  trackInitialView: false,
+  // // 最终的追踪js文件名
+  // // 默认 'piwik'
+  trackerFileName: 'matomo',
+  debug: false
+});
