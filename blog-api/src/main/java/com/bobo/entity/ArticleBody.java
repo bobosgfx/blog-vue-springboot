@@ -24,13 +24,9 @@ public class ArticleBody implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Type(type = "text")
+    @Column(name = "content")
     private String content; // 内容
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Type(type = "text")
+    @Column(name = "content_html")
     private String contentHtml;
 }

@@ -26,7 +26,6 @@ import com.bobo.entity.ArticleBody;
 import com.bobo.entity.Tag;
 import com.bobo.entity.User;
 import com.bobo.service.ArticleService;
-import com.bobo.service.TagService;
 
 /**
  * 文章api
@@ -35,12 +34,8 @@ import com.bobo.service.TagService;
 @RequestMapping(value = "/articles")
 public class ArticleController {
 
-
     @Autowired
     private ArticleService articleService;
-
-    @Autowired
-    private TagService tagService;
 
     @GetMapping
     @FastJsonView(

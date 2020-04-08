@@ -2,7 +2,7 @@ package com.bobo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -10,19 +10,22 @@ import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.hibernate.annotations.Proxy;
 
 @Entity
 @Table(name = "me_article")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Proxy(lazy = false)
 public class Article implements Serializable {
+
+    private static final long serialVersionUID = -4470366380115322213L;
 
     public static final int Article_TOP = 1;
     public static final int Article_Common = 0;
 
-    private static final long serialVersionUID = -4470366380115322213L;
+    private int weight = Article_Common; // 置顶
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,26 +37,26 @@ public class Article implements Serializable {
     @Column(name = "summary", length = 100, nullable = false)
     private String summary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "body_id")
     private ArticleBody body;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "me_article_tag",
             joinColumns = {@JoinColumn(name = "article_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id")})
-    private List<Tag> tags;
+    private Set<Tag> tags;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "article", orphanRemoval = true)
-    private List<Comment> comments;
+    @OneToMany(mappedBy = "article", orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Comment> comments;
 
     @Column(name = "comment_counts")
     private int commentCounts;
@@ -61,18 +64,8 @@ public class Article implements Serializable {
     @Column(name = "view_counts")
     private int viewCounts;
 
-    /**
-     * 置顶
-     */
-    private int weight = Article_Common;
-
-
-    /**
-     * 创建时间
-     */
     @JSONField(format = "yyyy.MM.dd HH:mm")
     @Column(name = "create_date")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
 

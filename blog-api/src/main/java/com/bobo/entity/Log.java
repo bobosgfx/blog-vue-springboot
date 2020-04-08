@@ -1,6 +1,7 @@
 package com.bobo.entity;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,7 +47,7 @@ public class Log implements Serializable {
     @Column(name = "ip", length = 15)
     private String ip;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_date")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 }

@@ -37,20 +37,14 @@ public class ArticleServiceTest extends BlogApiApplicationTests{
 	
 	@Test
 	public void listHotArticlesTest() {
-		
-		List<Article> as = articleService.listHotArticles(4);
-
-		as.stream().forEach( a -> System.out.println(a.getTitle()));
-		System.out.println(as.size());
+		List<Article> as = articleService.listHotArticles(6);
+		System.out.println(as);
 	}
 	
 	@Test
 	public void listNewArticlesTest() {
-
 		List<Article> as = articleService.listNewArticles(4);
-
-		as.stream().forEach( a -> System.out.println(a.getTitle()));
-		System.out.println(as.size());
+		System.out.println(as);
 	}
 
 	@Test

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8888
 # upload path 
 me:
   upload:
@@ -23,7 +23,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   redis:
     database: 0
-    host: 192.168.163.148
+    host: 192.168.163.150
     port: 6379
     password: 123456
     timeout: 5000

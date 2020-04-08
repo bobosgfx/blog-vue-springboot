@@ -45,12 +45,10 @@ public class User implements Serializable {
 
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "create_date")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "last_login")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date lastLogin;
 
     @Enumerated(EnumType.STRING)

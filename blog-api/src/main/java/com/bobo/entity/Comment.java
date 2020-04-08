@@ -2,7 +2,7 @@ package com.bobo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -30,9 +30,13 @@ public class Comment implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
+
+    @ManyToOne
+    @JoinColumn(name = "to_uid")
+    private User toUser;
 
     /**
      * 类型 0 文章的评论 1 评论的评论 2 评论的回复 @
@@ -45,17 +49,16 @@ public class Comment implements Serializable {
      */
     @JSONField(format = "yyyy.MM.dd HH:mm")
     @Column(name = "create_date")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "article_id")
     private Article article;
 
     @OneToMany
     @JoinColumn(name = "parent_id",nullable = true)
-    private List<Comment> childrens;
+    private Set<Comment> childrens;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
@@ -63,9 +66,7 @@ public class Comment implements Serializable {
     private Comment parent;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "to_uid")
-    private User toUser;
+
 
 
 
